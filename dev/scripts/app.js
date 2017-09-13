@@ -12,7 +12,7 @@ class App extends React.Component {
 		this.state = {
 			newImage: '',
 			comment: '',
-			images: []	,
+			images: [],
 			user: null,
 			loading: false
 		};
@@ -30,7 +30,6 @@ class App extends React.Component {
 				this.setState({
 					user
 				})
-
 			});
 	}
 	logout() {
@@ -67,15 +66,13 @@ class App extends React.Component {
 		e.preventDefault();
 		let file = this.file.files[0];
 		let storageRef = firebase.storage().ref('/');
-		// console.log(storageRef)
 		let uploadImage = storageRef.child(file.name);
-		// console.log('upload image', uploadImage);
+
 		this.setState({
 			loading: true,
 		});
 		uploadImage.put(file).then((snapshot) => {
 			uploadImage.getDownloadURL().then((url) => {
-				// console.log(url);
 				this.setState({
 					newImage: url ,
 					loading: false
@@ -83,7 +80,6 @@ class App extends React.Component {
 			})
 		})
 	}
-
 	componentDidMount() {
 	  auth.onAuthStateChanged((user) => {
 	    if (user) {
@@ -93,10 +89,8 @@ class App extends React.Component {
 	  const imageRef = firebase.database().ref('/');
 	  imageRef.on('value', (snapshot) => {
 	  		let firebaseItems = snapshot.val();
-	  		// console.log(firebaseItems);
-	  		const images = [];
+	  		let images = [];
 	  		for(let key in firebaseItems.images) {
-	  			// console.log(firebaseItems.images[key]);
 	  			images.push({
 	  				key: key,
 	  				imageUrl: firebaseItems.images[key].newImage,
@@ -126,7 +120,6 @@ class App extends React.Component {
           	<div className="wrapper">
           		<div className="uploadNewImage">
 	          		<form className="uploadImageForm" onSubmit={this.handleSubmit}>
-	          				
 	          				<input className="uploadImageInput" name="newImage" id="newImage" type="file" accept="image/*" ref={(ref) => {this.file = ref}} onChange={this.handleUpload}/>
 	          			<label className="uploadFileContainer" htmlFor="newImage">Upload an outfit</label>
 	          			<textarea name="comment" placeholder="comment" cols="20" rows="10" onChange={this.handleChange} value={this.state.comment}></textarea>
@@ -143,12 +136,12 @@ class App extends React.Component {
 							return(
 								<li key={shortid.generate()}>
 									<div className="imageContainer">
-									<img src={singleImage.imageUrl} alt=""/>
+										<img src={singleImage.imageUrl} alt=""/>
 									</div>
 									<div className="imageTextContainer">
-									<StarRating imageId={singleImage.key}/>
-									<p>{singleImage.comment}</p>
-									<button className="deleteOutfitBtn" onClick={() => this.removeItem(singleImage.key)}>Delete Outfit</button>
+										<StarRating imageId={singleImage.key}/>
+										<p>{singleImage.comment}</p>
+										<button className="deleteOutfitBtn" onClick={() => this.removeItem(singleImage.key)}>Delete Outfit</button>
 									</div>
 								</li>
 							)
@@ -169,24 +162,3 @@ class App extends React.Component {
 }
 
 ReactDOM.render(<App />, document.getElementById('app'));
-
-// user enters google sign in information to log in to app
-
-// on submit, log in screen disappears and main page appears
-
-// user clicks upload picture button
-
-// user can select an image from their computer 
-
-// on submit, user's image is appended to the image gallery
-
-// on each image, user can rate their outfit a score from 1 star to 5 stars
-
-// user can click on sign out button to sign out of google account
-
-
-
-
-
-
-
