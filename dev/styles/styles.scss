@@ -1,0 +1,209 @@
+@import "partials/setup";
+@import "partials/global";
+@import "partials/variables";
+@import "partials/mixins";
+
+header {
+	background: $pink;
+	height: 15vh;
+	position: fixed;
+	width: 100%;
+	z-index: 99999;
+
+}
+
+header .wrapper {
+	height: 15vh;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+h1 {
+	font-family: $titleFont;
+	text-transform: lowercase;
+	margin: 0 auto;
+	font-size: 5.0rem;
+	position: absolute;
+	bottom: -2.5rem;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.logInBtn {
+	font-size: 1.5rem;
+	padding: 1.0rem 2.0rem;
+	align-content: center;
+	@include respond-to ('large') {
+		margin-right: 1rem;
+	}
+	@include respond-to ('medium') {
+		font-size: 1rem;
+	}
+}
+
+
+// form
+main {
+	padding-top: 30vh;
+}
+
+main .wrapper {
+	// display: flex;
+	// justify-content: space-between;
+}
+
+.uploadNewImage{
+	position: fixed;
+	width: 25%;
+	display: block;
+	float: left;
+	// height: 100vh;
+	@include respond-to ('medium') {
+		float: none;
+		width: 80%;
+		margin: 0 auto;
+		position: static;
+	}
+
+}
+
+.uploadImageForm {
+	display: flex;
+	flex-direction: column;
+	// justify-content: space-around;
+	align-items: center;
+	// height: 100vh;
+}
+
+.uploadImageInput {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.uploadImageInput + label {
+    font-size: 1.25em;
+    color: white;
+    background: $darkBrown;
+    display: inline-block;
+    text-transform: lowercase;
+    padding: 1rem 0;
+    text-align: center;
+    width: 80%;
+}
+
+.uploadImageInput:focus + label, .uploadImageInput + label:hover {
+    background-color: $darkGrey;
+    cursor: pointer;
+}
+
+textarea {
+	width: 80%;
+	margin: 2.5rem 0;
+	padding: 20px;
+	font-size: 1.2rem;
+	@include respond-to ('medium') {
+		height: 10rem;
+	}
+}
+
+.imageSubmit {
+	border: none;
+	background: $darkBrown;
+	color: white;
+	padding: 1rem 2rem;
+	font-size: 1.25rem;
+	&:hover {
+		background: $darkGrey;
+	}
+}
+
+// gallery
+
+.galleryContainer {
+	width: 70%;
+	float: right;
+	@include respond-to ('medium') {
+		float: none;
+		width: 80%;
+		margin: 0 auto;
+		padding-top: 5rem;
+	}
+}
+
+.gallery {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+
+.gallery li {
+	flex-basis: 23rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 3rem;
+	@include respond-to ('medium') {
+		flex-basis: 15rem;
+	}
+}
+
+.imageContainer {
+	 overflow: hidden;
+	 max-height: 30rem;
+	 margin-bottom: 1.0rem;
+	 @include respond-to ('medium') {
+	 	max-height: 20rem;
+	 }
+}
+
+.imageContainer img {
+ height: auto;
+}
+
+.imageTextContainer {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	p {
+		text-align: center;
+		font-size: 1.2rem;
+	}
+}
+
+.starRating {
+	text-align: center;
+	font-size: 1.5rem;
+}
+
+.deleteOutfitBtn {
+	padding: .5rem 1rem;
+}
+
+// log out page 
+
+.logOutPage {
+	margin: 0 auto;
+	border: 2px solid $lightBrown;
+	width: 55%;
+	padding: 2rem 3rem;
+	text-align: center;
+}
+
+.logOutPage h2 {
+	font-family: $titleFont;
+	text-transform: lowercase;
+	font-size: 4rem;
+	background: $lightPink;
+}
+
+.logOutPage p {
+	font-size: 2.0rem;
+}
+
