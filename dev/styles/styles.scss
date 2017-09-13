@@ -42,15 +42,9 @@ h1 {
 	}
 }
 
-
 // form
 main {
 	padding-top: 30vh;
-}
-
-main .wrapper {
-	// display: flex;
-	// justify-content: space-between;
 }
 
 .uploadNewImage{
@@ -65,15 +59,17 @@ main .wrapper {
 		margin: 0 auto;
 		position: static;
 	}
-
 }
 
 .uploadImageForm {
 	display: flex;
 	flex-direction: column;
-	// justify-content: space-around;
 	align-items: center;
-	// height: 100vh;
+	justify-content: flex-start;
+	height: 60vh;
+	@include respond-to ('medium') {
+		height: auto;
+	}
 }
 
 .uploadImageInput {
@@ -151,6 +147,9 @@ textarea {
 	@include respond-to ('medium') {
 		flex-basis: 15rem;
 	}
+	@include respond-to ('small') {
+		flex-basis: 12rem;
+	}
 }
 
 .imageContainer {
@@ -194,6 +193,9 @@ textarea {
 	width: 55%;
 	padding: 2rem 3rem;
 	text-align: center;
+	@include respond-to ('medium') {
+		width: 80%;
+	}
 }
 
 .logOutPage h2 {
@@ -201,6 +203,9 @@ textarea {
 	text-transform: lowercase;
 	font-size: 4rem;
 	background: $lightPink;
+	@include respond-to (medium) {
+		font-size: 3.5rem;
+	}
 }
 
 .logOutPage p {

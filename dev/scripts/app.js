@@ -53,6 +53,10 @@ class App extends React.Component {
 			rating: 0
 		}
 		dbRef.push(newImageAndComment);	
+		this.setState({
+			newImage: '',
+			comment: ''
+		});
 	}
 	handleChange(e) {
 		this.setState({
@@ -129,7 +133,7 @@ class App extends React.Component {
 	          			{ (this.state.loading === true) ?
 	          				<p className="loadingParagraph">Image is Loading!</p>
 	          				:
-	          				<input className="imageSubmit" type="submit" />	
+	          				<input className="imageSubmit" disabled={!this.state.newImage} type="submit" />	
 	          			}
 	          		</form>
           		</div>
