@@ -4,7 +4,7 @@ import firebase, { auth, provider } from "./firebase.js";
 import StarRatingComponent from 'react-star-rating-component';
 
 
-const dbRef = firebase.database().ref('/images');
+const dbRef = firebase.database().ref('/');
 
 export default class StarRating extends React.Component {
     constructor() {
@@ -17,15 +17,15 @@ export default class StarRating extends React.Component {
     onStarClick(nextValue, prevValue, name) {
         this.setState({rating: nextValue});
 
-      firebase.database().ref(`/images/${this.props.imageId}/rating`).set(nextValue)
+      firebase.database().ref(`/${this.props.imageUid}/${this.props.imageId}/rating`).set(nextValue)
+      console.log(this.props.imageId);
     }
     componentDidMount() {
-        const ratingRef = firebase.database().ref(`/images/${this.props.imageId}/rating`);
+        const ratingRef = firebase.database().ref(`/${this.props.imageUid}/${this.props.imageId}/rating`);
         ratingRef.on('value', (snapshot) => {
                
                 let rating = snapshot.val()
                     
-                
                 this.setState({
                     rating: rating
                 })

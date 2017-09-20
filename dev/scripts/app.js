@@ -4,7 +4,9 @@ import StarRating from './starRating.js';
 import firebase, { auth, provider } from './firebase.js';
 import shortid from 'shortid';
 
-const dbRef = firebase.database().ref('/images');
+
+
+const dbRef = firebase.database().ref('/');
 
 class App extends React.Component {
 	constructor() {
@@ -15,6 +17,7 @@ class App extends React.Component {
 			images: [],
 			user: null,
 			loading: false
+
 		};
 		this.handleUpload = this.handleUpload.bind(this);
 		this.handleChange = this.handleChange.bind(this);
@@ -40,11 +43,13 @@ class App extends React.Component {
 				});
 			})
 	}
-	removeItem(key) {
-		const itemRef = firebase.database().ref(`/images/${key}`);
+	removeItem(uid, key) {
+		// console.log(uid, key)
+		const itemRef = firebase.database().ref(`/${uid}/${key}`);
 		itemRef.remove();
 	}
 	handleSubmit(e) {
+		const dbRef = firebase.database().ref(this.state.user.uid);
 		e.preventDefault();
 		const newImageAndComment = {
 			newImage: this.state.newImage,
@@ -81,28 +86,35 @@ class App extends React.Component {
 		})
 	}
 	componentDidMount() {
+		// let user;	
 	  auth.onAuthStateChanged((user) => {
 	    if (user) {
+	    	// user = user.uid	
 	      this.setState({ user });
 	    } 
+	    	// console.log(user.uid)
+		  const imageRef = firebase.database().ref(user.uid);
+		  imageRef.on('value', (snapshot) => {
+		  		let firebaseItems = snapshot.val();
+		  		// console.log(user);
+		  		// console.log(firebaseItems);
+		  		let images = [];
+		  		for(let key in firebaseItems) {
+		  			// console.log(firebaseItems[key].comment)
+		  			images.push({
+		  				key: key,
+		  				imageUrl: firebaseItems[key].newImage,
+		  				comment: firebaseItems[key].comment
+		  			})
+		  		}
+		  		this.setState({
+		  			images: images
+		  		})
+		  })
 	  });
-	  const imageRef = firebase.database().ref('/');
-	  imageRef.on('value', (snapshot) => {
-	  		let firebaseItems = snapshot.val();
-	  		let images = [];
-	  		for(let key in firebaseItems.images) {
-	  			images.push({
-	  				key: key,
-	  				imageUrl: firebaseItems.images[key].newImage,
-	  				comment: firebaseItems.images[key].comment
-	  			})
-	  		}
-	  		this.setState({
-	  			images: images
-	  		})
-	  })
 	}
     render() {
+
       return (
         <div className='app'>
           <header>
@@ -139,9 +151,9 @@ class App extends React.Component {
 										<img src={singleImage.imageUrl} alt=""/>
 									</div>
 									<div className="imageTextContainer">
-										<StarRating imageId={singleImage.key}/>
+										<StarRating imageId={singleImage.key} imageUid={this.state.user.uid}/>
 										<p>{singleImage.comment}</p>
-										<button className="deleteOutfitBtn" onClick={() => this.removeItem(singleImage.key)}>Delete Outfit</button>
+										<button className="deleteOutfitBtn" onClick={() => this.removeItem(this.state.user.uid, singleImage.key)}>Delete Outfit</button>
 									</div>
 								</li>
 							)
