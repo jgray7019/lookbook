@@ -1,7 +1,9 @@
   import firebase from 'firebase';
+  import apiKey from './apiKey';
   // Initialize Firebase
+
   var config = {
-    apiKey: "AIzaSyBJe1mHPVrrqURwzmMNv_qbtPeQJ6tP6v8",
+    apiKey: apiKey.MY_KEY,
     authDomain: "lookbook-28f7d.firebaseapp.com",
     databaseURL: "https://lookbook-28f7d.firebaseio.com",
     projectId: "lookbook-28f7d",
