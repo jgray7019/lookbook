@@ -22,9 +22,6 @@ class App extends React.Component {
 			user: null,
 			loading: false
 		};
-		
-		this.login = this.login.bind(this);
-		this.logout = this.logout.bind(this);
 	}
 
 	login() {
@@ -53,9 +50,9 @@ class App extends React.Component {
 					<div className="wrapper">
 						<h1>Lookbook</h1>
 						{this.state.user ?
-							<button className="logInBtn" onClick={this.logout}>Log Out</button>
+							<button className="logInBtn" onClick={this.logout.bind(this)}>Log Out</button>
 							:
-							<button className="logInBtn" onClick={this.login}>Log In</button>
+							<button className="logInBtn" onClick={this.login.bind(this)}>Log In</button>
 						}
 					</div>
 				</header>

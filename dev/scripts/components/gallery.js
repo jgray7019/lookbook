@@ -66,7 +66,7 @@ export default class Gallery extends React.Component {
                     {this.state.filteredImages.map((singleImage) => {
                         return(
                             <li key={singleImage.key}>
-                                <Image source={singleImage.imageUrl} />
+                                <Image source={singleImage.imageUrl} altText={singleImage.comment}/>
                                 <div className="imageTextContainer">
                                     <ImageDetails comment={singleImage.comment} imageUid={this.state.user.uid} imageId={singleImage.key}/> 
                                 </div>

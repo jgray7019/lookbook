@@ -63,7 +63,7 @@ export default class UploadImageForm extends React.Component {
 
         render() {
             return ( 
-                <div className="uploadNewImage">
+                <div className="uploadNewImageContainer">
                     <form className="uploadImageForm" onSubmit={this.handleSubmit.bind(this)}>
                         <input 
                             className="uploadImageInput" 

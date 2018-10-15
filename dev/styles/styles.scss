@@ -17,45 +17,46 @@ header {
 		background: white;
 		position: absolute;
 	}
-}
 
-header .wrapper {
-	height: 15vh;
-	display: flex;
-	justify-content: flex-end;
-	align-items: center;
-}
-
-h1 {
-	font-family: $titleFont;
-	text-transform: lowercase;
-	margin: 0 auto;
-	font-size: 5.0rem;
-	position: absolute;
-	bottom: -2.5rem;
-	left: 50%;
-	transform: translateX(-50%);
-}
-
-.logInBtn {
-	font-size: 1.5rem;
-	padding: 1.0rem 2.0rem;
-	align-content: center;
-	box-shadow: 0 3px 5px 0 rgba(0,0,0,.12);
-	@include respond-to ('large') {
-		margin-right: 1rem;
+	.wrapper {
+		height: 15vh;
+		display: flex;
+		justify-content: flex-end;
+		align-items: center;
 	}
-	@include respond-to ('medium') {
-		font-size: 1rem;
+
+	h1 {
+		font-family: $titleFont;
+		text-transform: lowercase;
+		margin: 0 auto;
+		font-size: 5.0rem;
+		position: absolute;
+		bottom: -2.5rem;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+
+	.logInBtn {
+		font-size: 1.5rem;
+		padding: 1.0rem 2.0rem;
+		align-content: center;
+		box-shadow: $button-shadow;
+		@include respond-to ('large') {
+			margin-right: 1rem;
+		}
+		@include respond-to ('medium') {
+			font-size: 1rem;
+		}
 	}
 }
+
 
 // form
 main {
 	padding-top: 30vh;
 }
 
-.uploadNewImage{
+.uploadNewImageContainer{
 	position: fixed;
 	width: 20%;
 	display: block;
@@ -97,7 +98,7 @@ main {
     padding: 1rem 0;
     text-align: center;
     width: 100%;
-    box-shadow: 0 3px 5px 0 rgba(0,0,0,.12);
+    box-shadow: $button-shadow;
 }
 
 .uploadImageInput:focus + label, .uploadImageInput + label:hover {
@@ -110,7 +111,7 @@ textarea {
 	margin: 2.5rem 0;
 	padding: 20px;
 	font-size: 1.2rem;
-	box-shadow: 0 3px 5px 0 rgba(0,0,0,.12);
+	box-shadow: $button-shadow;
 	@include respond-to ('medium') {
 		height: 10rem;
 	}
@@ -122,7 +123,7 @@ textarea {
 	color: white;
 	padding: 1rem 2rem;
 	font-size: 1.25rem;
-	box-shadow: 0 3px 5px 0 rgba(0,0,0,.12);
+	box-shadow: $button-shadow;
 	&:hover {
 		background: $darkGrey;
 	}
@@ -137,17 +138,32 @@ textarea {
 	margin-bottom: 2.5rem;
 	color: white;
 	background-color: $darkBrown;
-	padding: 1rem 2rem;
+	padding: 1rem 0 1rem 2rem;
 	font-size: 1.25rem;
 	z-index: 10;
-	box-shadow: 0 3px 5px 0 rgba(0,0,0,.12);
+	box-shadow: $button-shadow;
+
+	&:hover {
+		background: $darkGrey;
+	}
+
+	&:after {
+		content: '▾';
+		position: absolute;
+		bottom: 0;
+		color: white;
+		right: .5rem;
+		top: 50%; 
+  		-webkit-transform: translate(-50%,-50%);
+      	-ms-transform: translate(-50%,-50%);
+		transform: translate(-50%,-50%);
+		z-index: -1;
+	}
 }
 
 .filterDropdown {
-	appearance: none;
+	padding-right: 3rem;
 	text-transform: lowercase;
-	border: 1px $darkGrey solid;
-	background: $darkBrown;
 	color: white;
     border: none;
     outline: none;
@@ -157,7 +173,8 @@ textarea {
     appearance: none;
     border-radius: 0;
     margin: 0;
-    font-size: 1.25rem;
+	font-size: 1.25rem;
+	
 }
 
 // gallery
@@ -185,16 +202,17 @@ textarea {
 		grid-template-columns: 100%;
 		grid-column-gap: 0;
 	}
+
+	li {
+		flex-basis: 23rem;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin-bottom: 3rem;
+		
+	}
 }
 
-.gallery li {
-	flex-basis: 23rem;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	margin-bottom: 3rem;
-	
-}
 
 .imageContainer {
 	 overflow: hidden;
@@ -204,12 +222,14 @@ textarea {
 	 @include respond-to ('medium') {
 	 	max-height: 30rem;
 	 }
+
+	 img {
+		height: auto;
+		box-shadow: $button-shadow;
+	   }
 }
 
-.imageContainer img {
- height: auto;
- box-shadow: 0 3px 5px 0 rgba(0,0,0,.12);
-}
+
 
 .imageTextContainer {
 	display: flex;
@@ -229,12 +249,14 @@ textarea {
 
 .deleteButtonContainer {
 	margin-top: auto;
+
+	.deleteOutfitBtn {
+		padding: .5rem 1rem;
+		box-shadow: $button-shadow;
+	}
 }
 
-.deleteOutfitBtn {
-	padding: .5rem 1rem;
-	box-shadow: 0 3px 5px 0 rgba(0,0,0,.12);
-}
+
 
 // log out page 
 
@@ -247,19 +269,23 @@ textarea {
 	@include respond-to ('medium') {
 		width: 80%;
 	}
-}
 
-.logOutPage h2 {
-	font-family: $titleFont;
-	text-transform: lowercase;
-	font-size: 4rem;
-	background: $lightPink;
-	@include respond-to (medium) {
-		font-size: 3.5rem;
+	h2 {
+		font-family: $titleFont;
+		text-transform: lowercase;
+		font-size: 4rem;
+		background: $lightPink;
+		@include respond-to (medium) {
+			font-size: 3.5rem;
+		}
+	}
+
+	p {
+		font-size: 2.0rem;
 	}
 }
 
-.logOutPage p {
-	font-size: 2.0rem;
-}
+
+
+
 
