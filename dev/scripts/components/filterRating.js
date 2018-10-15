@@ -18,16 +18,17 @@ export default class FilterRating extends React.Component {
     render() {
         return (
             <div className="filterRating">
-                <label htmlFor="filterRating">Filter by Rating:</label>
-                <select value={this.state.value} id="filterRating" onChange={this.handleFilter.bind(this)}>
-                    <option value="filter rating" disabled>Filter by Rating</option>
-                    <option value="all">All</option>
-                    <option value="1">♥︎</option>
-                    <option value="2">♥︎ ♥︎</option>
-                    <option value="3">♥︎ ♥︎ ♥︎</option>
-                    <option value="4">♥︎ ♥︎ ♥︎ ♥︎</option>
-                    <option value="5">♥︎ ♥︎ ♥︎ ♥︎ ♥︎</option>
-                </select>
+                <label className="filterLabel" htmlFor="filterRating">
+                    <select value={this.state.value} className ="filterDropdown" id="filterRating" onChange={this.handleFilter.bind(this)}>
+                        <option value="filter rating" disabled>Filter by Rating ▾</option>
+                        <option value="all">All</option>
+                        <option value="1">♥︎</option>
+                        <option value="2">♥︎ ♥︎</option>
+                        <option value="3">♥︎ ♥︎ ♥︎</option>
+                        <option value="4">♥︎ ♥︎ ♥︎ ♥︎</option>
+                        <option value="5">♥︎ ♥︎ ♥︎ ♥︎ ♥︎</option>
+                    </select>
+                </label>
 			</div>
         )
     }

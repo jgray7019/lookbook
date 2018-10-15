@@ -57,10 +57,9 @@ main {
 
 .uploadNewImage{
 	position: fixed;
-	width: 25%;
+	width: 20%;
 	display: block;
 	float: left;
-	// height: 100vh;
 	@include respond-to ('medium') {
 		float: none;
 		width: 80%;
@@ -97,7 +96,7 @@ main {
     text-transform: lowercase;
     padding: 1rem 0;
     text-align: center;
-    width: 80%;
+    width: 100%;
     box-shadow: 0 3px 5px 0 rgba(0,0,0,.12);
 }
 
@@ -107,7 +106,7 @@ main {
 }
 
 textarea {
-	width: 80%;
+	width: 100%;
 	margin: 2.5rem 0;
 	padding: 20px;
 	font-size: 1.2rem;
@@ -129,6 +128,38 @@ textarea {
 	}
 }
 
+//filter rating dropdown
+
+.filterLabel {
+	position: relative;
+	display: inline-block;
+	margin: 0 auto;
+	margin-bottom: 2.5rem;
+	color: white;
+	background-color: $darkBrown;
+	padding: 1rem 2rem;
+	font-size: 1.25rem;
+	z-index: 10;
+	box-shadow: 0 3px 5px 0 rgba(0,0,0,.12);
+}
+
+.filterDropdown {
+	appearance: none;
+	text-transform: lowercase;
+	border: 1px $darkGrey solid;
+	background: $darkBrown;
+	color: white;
+    border: none;
+    outline: none;
+    background: transparent;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0;
+    margin: 0;
+    font-size: 1.25rem;
+}
+
 // gallery
 
 .galleryContainer {
@@ -143,9 +174,17 @@ textarea {
 }
 
 .gallery {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-around;
+	display: grid;
+	grid-template-columns: 30% 30% 30%;
+	grid-column-gap: 5%;
+	@include respond-to ('medium') {
+		grid-template-columns: 45% 45%;
+		grid-column-gap: 10%;
+	}
+	@include respond-to ('small') {
+		grid-template-columns: 100%;
+		grid-column-gap: 0;
+	}
 }
 
 .gallery li {
@@ -153,14 +192,8 @@ textarea {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: space-between;
 	margin-bottom: 3rem;
-	@include respond-to ('medium') {
-		flex-basis: 15rem;
-	}
-	@include respond-to ('small') {
-		flex-basis: 12rem;
-	}
+	
 }
 
 .imageContainer {
@@ -169,7 +202,7 @@ textarea {
 	 margin-bottom: 1.0rem;
 	 font-size: 0;
 	 @include respond-to ('medium') {
-	 	max-height: 20rem;
+	 	max-height: 30rem;
 	 }
 }
 
@@ -192,6 +225,10 @@ textarea {
 .starRating {
 	text-align: center;
 	font-size: 1.5rem;
+}
+
+.deleteButtonContainer {
+	margin-top: auto;
 }
 
 .deleteOutfitBtn {

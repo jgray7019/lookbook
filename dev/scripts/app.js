@@ -10,6 +10,11 @@ import LoggedOut from './components/loggedOut';
 class App extends React.Component {
 	constructor() {
 		super();
+		firebase.auth().onAuthStateChanged((user) => {
+			if (user) {
+			  this.setState({ user });
+			}
+		});
 		this.state = {
 			newImage: '',
 			comment: '',
@@ -17,6 +22,7 @@ class App extends React.Component {
 			user: null,
 			loading: false
 		};
+		
 		this.login = this.login.bind(this);
 		this.logout = this.logout.bind(this);
 	}

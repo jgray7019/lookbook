@@ -17,7 +17,7 @@ export default class Gallery extends React.Component {
             user: null
         };
         this.removeItem = this.removeItem.bind(this);
-        this.initialImageState = this.state;
+        //this.initialImageState = this.state;
     }
 
     removeItem(uid, key) {
@@ -68,7 +68,9 @@ export default class Gallery extends React.Component {
                             <li key={singleImage.key}>
                                 <Image source={singleImage.imageUrl} />
                                 <div className="imageTextContainer">
-                                    <ImageDetails comment={singleImage.comment} imageUid={this.state.user.uid} imageId={singleImage.key}/>
+                                    <ImageDetails comment={singleImage.comment} imageUid={this.state.user.uid} imageId={singleImage.key}/> 
+                                </div>
+                                <div className="deleteButtonContainer">
                                     <button className="deleteOutfitBtn" onClick={() => this.removeItem(this.state.user.uid, singleImage.key)}>Delete Outfit</button> 
                                 </div>
                             </li>
